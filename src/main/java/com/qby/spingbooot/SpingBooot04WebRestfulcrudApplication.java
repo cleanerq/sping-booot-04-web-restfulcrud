@@ -2,6 +2,11 @@ package com.qby.spingbooot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.ViewResolver;
+
+import java.util.Locale;
 
 @SpringBootApplication
 public class SpingBooot04WebRestfulcrudApplication {
@@ -10,4 +15,15 @@ public class SpingBooot04WebRestfulcrudApplication {
         SpringApplication.run(SpingBooot04WebRestfulcrudApplication.class, args);
     }
 
+    @Bean
+    public ViewResolver myViewResolver() {
+        return new MyViewResolver();
+    }
+
+    private static class MyViewResolver implements ViewResolver {
+        @Override
+        public View resolveViewName(String viewName, Locale locale) throws Exception {
+            return null;
+        }
+    }
 }
