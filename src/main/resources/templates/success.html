@@ -11,7 +11,11 @@
 <div th:text="${hello}"></div>
 <div id="div01" class="myDiv" th:id="${hello}" th:class="${hello}" th:text="${hello}">这是显示欢迎信息</div>
 <hr/>
+
+转义
 <div th:text="${hello}"></div>
+
+不转义
 <div th:utext="${hello}"></div>
 <hr/>
 
