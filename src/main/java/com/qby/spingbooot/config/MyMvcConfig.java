@@ -1,9 +1,11 @@
 package com.qby.spingbooot.config;
 
+import com.qby.spingbooot.component.LoginHandlerInterceptor;
 import com.qby.spingbooot.component.MyLocalResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -42,5 +44,23 @@ public class MyMvcConfig implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         return new MyLocalResolver();
+    }
+
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // 拦截任意请求
+        // 登录页面不拦截
+        // 静态资源 *.css *.js
+        // springboot 已经做好静态资源映射 可以不用处理经停资源
+        registry.addInterceptor(new LoginHandlerInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/index.html",
+                        "/user/login",
+                        "/",
+                        "/static/**",
+                        "/webjars/**",
+                        "/asserts/**",
+                        "/public/**");
     }
 }
