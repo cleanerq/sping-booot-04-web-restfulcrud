@@ -1,7 +1,9 @@
 package com.qby.spingbooot.config;
 
+import com.qby.spingbooot.component.MyLocalResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -33,5 +35,10 @@ public class MyMvcConfig implements WebMvcConfigurer {
         };
 
         return config;
+    }
+
+    @Bean
+    public LocaleResolver localeResolver() {
+        return new MyLocalResolver();
     }
 }
