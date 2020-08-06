@@ -1,7 +1,8 @@
 package com.qby.spingbooot.dao;
 
-import com.qby.entities.Department;
-import com.qby.entities.Employee;
+
+import com.qby.spingbooot.entities.Department;
+import com.qby.spingbooot.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

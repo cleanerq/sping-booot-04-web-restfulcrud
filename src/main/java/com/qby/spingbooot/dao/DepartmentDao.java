@@ -1,6 +1,7 @@
 package com.qby.spingbooot.dao;
 
-import com.qby.entities.Department;
+
+import com.qby.spingbooot.entities.Department;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
