@@ -4,15 +4,19 @@ import com.qby.spingbooot.dao.DepartmentDao;
 import com.qby.spingbooot.dao.EmployeeDao;
 import com.qby.spingbooot.entities.Department;
 import com.qby.spingbooot.entities.Employee;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collection;
 
 @Controller
 public class EmployeeController {
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private EmployeeDao employeeDao;
@@ -41,5 +45,20 @@ public class EmployeeController {
         Collection<Department> departments = departmentDao.getDepartments();
         model.addAttribute("depts", departments);
         return "emp/add";
+    }
+
+    /**
+     * 员工添加保存
+     * 自动将请求参数与入参对象绑定
+     *
+     * @return
+     */
+    @PostMapping("/emp")
+    public String addEmp(Employee employee) {
+        employeeDao.save(employee);
+
+        logger.info("保存的员工信息:{}", employee.toString());
+        // /代表当前项目路径
+        return "redirect:/emps";
     }
 }
