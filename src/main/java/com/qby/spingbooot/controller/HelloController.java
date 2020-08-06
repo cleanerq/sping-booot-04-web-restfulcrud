@@ -10,10 +10,10 @@ import java.util.Arrays;
 @Controller
 public class HelloController {
 
-    @RequestMapping({"/", "/index.html"})
-    public String index() {
-        return "login";
-    }
+//    @RequestMapping({"/", "/index.html"})
+//    public String index() {
+//        return "login";
+//    }
 
     @ResponseBody
     @RequestMapping("/hello")
