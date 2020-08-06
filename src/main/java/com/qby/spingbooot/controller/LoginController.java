@@ -15,10 +15,16 @@ public class LoginController {
                         @RequestParam("password") String password,
                         Model model) {
         if (!StringUtils.isEmpty(username) && "123456".equals(password)) {
-            return "dashboard";
+            // 登录成功，防止表单重复提交，可以重定向到主页
+            return "redirect:/main.html";
         } else {
             model.addAttribute("msg", "用户名密码错误！");
             return "login";
         }
     }
+
+//    @RequestMapping("/dashboard")
+//    public String dashboard() {
+//        return "dashboard";
+//    }
 }
