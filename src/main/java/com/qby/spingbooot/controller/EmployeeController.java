@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.Collection;
 
@@ -59,6 +61,29 @@ public class EmployeeController {
 
         logger.info("保存的员工信息:{}", employee.toString());
         // /代表当前项目路径
+        return "redirect:/emps";
+    }
+
+    // 来到修改页面，查询当前员工，在页面回显
+    @GetMapping("/emp/{id}")
+    public String toEditPage(@PathVariable("id") Integer id, Model model) {
+        Employee employee = employeeDao.get(id);
+        model.addAttribute("emp", employee);
+
+        // 查询所有部门在页面显示用
+        Collection<Department> departments = departmentDao.getDepartments();
+        model.addAttribute("depts", departments);
+
+        // 修改和添加用一个页面
+        return "emp/add";
+    }
+
+    // 员工修改
+    @PutMapping("/emp")
+    public String updateEmployee(Employee employee) {
+
+        employeeDao.save(employee);
+
         return "redirect:/emps";
     }
 }
