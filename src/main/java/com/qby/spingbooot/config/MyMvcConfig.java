@@ -58,14 +58,15 @@ public class MyMvcConfig implements WebMvcConfigurer {
         // 登录页面不拦截
         // 静态资源 *.css *.js
         // springboot 已经做好静态资源映射 可以不用处理经停资源
-//        registry.addInterceptor(new LoginHandlerInterceptor())
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/index.html",
-//                        "/user/login",
-//                        "/",
-//                        "/static/**",
-//                        "/webjars/**",
-//                        "/asserts/**",
-//                        "/public/**");
+        registry.addInterceptor(new LoginHandlerInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/index.html",
+                        "/user/login",
+                        "/",
+                        "/static/**",
+                        "/webjars/**",
+                        "/asserts/**",
+                        "/public/**");
     }
+
 }
