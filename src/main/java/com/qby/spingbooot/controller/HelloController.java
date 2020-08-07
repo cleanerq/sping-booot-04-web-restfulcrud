@@ -1,6 +1,6 @@
 package com.qby.spingbooot.controller;
 
-import com.qby.spingbooot.exception.UserNotException;
+import com.qby.spingbooot.exception.UserNotExistsException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ public class HelloController {
     @RequestMapping("/hello")
     public String hello(@RequestParam("user") String user) {
         if ("aaa".equals(user)) {
-            throw new UserNotException();
+            throw new UserNotExistsException();
         }
         return "hello";
     }
