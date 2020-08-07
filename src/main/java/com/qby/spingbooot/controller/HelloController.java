@@ -1,8 +1,10 @@
 package com.qby.spingbooot.controller;
 
+import com.qby.spingbooot.exception.UserNotException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Arrays;
@@ -17,7 +19,10 @@ public class HelloController {
 
     @ResponseBody
     @RequestMapping("/hello")
-    public String hello() {
+    public String hello(@RequestParam("user") String user) {
+        if ("aaa".equals(user)) {
+            throw new UserNotException();
+        }
         return "hello";
     }
 
