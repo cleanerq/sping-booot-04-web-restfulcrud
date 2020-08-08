@@ -24,7 +24,7 @@ public class MyserverConfig implements WebMvcConfigurer {
             @Override
             public void customize(ConfigurableWebServerFactory factory) {
                 // 定制嵌入式servlet容器的相关规则
-                factory.setPort(8083);
+                factory.setPort(8080);
             }
         };
     }
@@ -48,11 +48,11 @@ public class MyserverConfig implements WebMvcConfigurer {
 
 
     @Bean
-    public FilterRegistrationBean<MyFilter> myFilterFilterRegistrationBean() {
-        FilterRegistrationBean<MyFilter> filterFilterRegistrationBean = new FilterRegistrationBean<>();
+    public FilterRegistrationBean myFilterFilterRegistrationBean() {
+        FilterRegistrationBean filterFilterRegistrationBean = new FilterRegistrationBean<>();
 
         filterFilterRegistrationBean.setFilter(new MyFilter());
-        filterFilterRegistrationBean.setUrlPatterns(Arrays.asList("/hello", "/myServlet"));
+        filterFilterRegistrationBean.setUrlPatterns(Arrays.asList("/myServlet"));
 
         return filterFilterRegistrationBean;
     }
