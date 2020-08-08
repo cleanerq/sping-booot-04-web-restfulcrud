@@ -9,7 +9,7 @@ public class MyFilter implements Filter {
     public void doFilter(ServletRequest servletRequest,
                          ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("myfilter");
+        System.out.println("myfilter doFilter");
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }

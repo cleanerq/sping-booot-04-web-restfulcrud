@@ -1,12 +1,18 @@
 package com.qby.spingbooot.config;
 
+import com.qby.spingbooot.filter.MyFilter;
+import com.qby.spingbooot.listen.MyListener;
 import com.qby.spingbooot.servlet.MyServlet;
 import org.springframework.boot.web.server.ConfigurableWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.Arrays;
 
 @Configuration
 public class MyserverConfig implements WebMvcConfigurer {
@@ -31,5 +37,23 @@ public class MyserverConfig implements WebMvcConfigurer {
         ServletRegistrationBean bean = new ServletRegistrationBean(new MyServlet(),
                 "/myServlet");
         return bean;
+    }
+
+    @Bean
+    public ServletListenerRegistrationBean<MyListener> myListener() {
+        ServletListenerRegistrationBean<MyListener> listener =
+                new ServletListenerRegistrationBean<>(new MyListener());
+        return listener;
+    }
+
+
+    @Bean
+    public FilterRegistrationBean<MyFilter> myFilterFilterRegistrationBean() {
+        FilterRegistrationBean<MyFilter> filterFilterRegistrationBean = new FilterRegistrationBean<>();
+
+        filterFilterRegistrationBean.setFilter(new MyFilter());
+        filterFilterRegistrationBean.setUrlPatterns(Arrays.asList("/hello", "/myServlet"));
+
+        return filterFilterRegistrationBean;
     }
 }
